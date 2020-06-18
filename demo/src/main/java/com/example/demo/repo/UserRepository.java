@@ -11,7 +11,7 @@ import com.example.demo.model.User;
 public interface UserRepository extends JpaRepository<User, Integer>{
   List<User> findByUserNameLike(String userName);
   List<User> findByNickNameLike(String nickName);
-  
+  //Any other Query
   @Query("Select u.userName from User u where u.nickName = :nn")
   List<String> findNames(@Param("nn") String nn);
   
