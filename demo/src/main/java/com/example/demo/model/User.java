@@ -10,7 +10,7 @@ import javax.persistence.Table;
 @Table(name = "user")
 public class User implements Comparable<User> {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int userId;
 	private String userName;
 	private String nickName;

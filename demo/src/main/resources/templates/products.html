@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Spring MVC Title</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" media="all"
+	href="../../css/style.css" th:href="@{/css/style.css}" />
+<title th:utext="#{products.page.title}">title</title>
+</head>
+<body>
+	<h1 th:utext="#{products.page.title}">
+		home
+	</h1>
+	<!-- Add Hyperlink -->
+	<a href="AddProduct.html" th:href="@{/product/add}"
+		th:utext="#{products.page.add}">label</a>
+    
+	<h2 th:utext="#{products.page.header}" th:if="${not #lists.isEmpty(products)}">header</h2>
+	<table class="w3-container" th:if="${not #lists.isEmpty(products)}">
+		<tr th:each="product:${products}">
+			<td th:text=${product.id}>Id</td>
+			<td th:text=${product.name}>Name</td>
+			<td th:text=${product.brand}>Brand</td>
+			<td th:text=${product.description}>Description</td>
+			<td th:text=${product.price}>Price</td>
+			<td th:text="${#dates.format(product.dom, 'dd-MM-yyyy')}" >Date of Manufacture</td>
+			<td><a href="EditProduct.html"
+				th:href="@{/product/edit/}+${product.id}" th:utext="#{products.page.edit}"> Edit </a></td>
+			<td><a href="DeleteProduct.html"
+				th:href="@{/product/delete/}+${product.id}" th:utext="#{products.page.delete}"> Delete </a></td>
+		</tr>
+	</table>
+	
+</body>
+</html>

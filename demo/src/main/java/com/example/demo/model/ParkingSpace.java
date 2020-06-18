@@ -10,11 +10,11 @@ import javax.persistence.OneToOne;
 public class ParkingSpace {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private int lot;
 	private String location;
-	@OneToOne(mappedBy = "pSpace")
+	@OneToOne(mappedBy = "parkingSpace")
 	private Employee employee;
 	public ParkingSpace() {
 		super();
