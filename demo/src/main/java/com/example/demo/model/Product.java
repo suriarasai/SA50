@@ -8,7 +8,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
 
@@ -17,9 +23,12 @@ public class Product {
 	
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
+	@NotNull
+	@Size(min = 2, max = 200)
 	private String name;
 	private String brand;
 	private String description;
+	@Digits(integer = 8, fraction = 2)
 	private double price;
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat (pattern="dd-MM-yyyy")

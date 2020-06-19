@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Log In</title>
+</head>
+<body>
+<h1>Log In Page</h1>
+<h2>This is from Session</h2>
+<h2 th:utext="${session.display}">Session Data</h2>
+
+<form action="#" th:object="${user}" th:action="@{/user/save}" method="get">
+		<fieldset>
+			User Name: <input type="text" th:field="*{userName}">
+		</fieldset>
+		<fieldset>
+			Nick Name: <input type="text" th:field="*{nickName}">
+		</fieldset>
+		<fieldset>
+			<button type="submit" th:text="#{user.page.button}">Save</button>
+		</fieldset>
+</form>
+
+<a href="About.html"
+				th:href="@{/user/about?key=value}" >Key Link for Request  </a>
+				<br/>
+<a href="About.html" th:href="@{/user/path/3}" >Key Link  Path Variable</a>
+</body>
+</html>

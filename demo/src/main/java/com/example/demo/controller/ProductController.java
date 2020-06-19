@@ -1,27 +1,40 @@
 package com.example.demo.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.example.demo.model.Product;
+import com.example.demo.model.User;
 import com.example.demo.repo.ProductRepository;
 
 @Controller
 @RequestMapping("/product")
+@SessionAttributes("user")
 public class ProductController {
 	
 	@Autowired
 	ProductRepository pRepo;
+	
+	@InitBinder
+	protected void InitBinder(WebDataBinder binder) {
+		
+	}
 
 	@GetMapping("/list")
-	public String listAll(Model model) {
+	public String listAll(Model model, User user) { 
 		model.addAttribute("products", pRepo.findAll());
+		user.setUserName("Dilbert");
 		return "products";
 	}
 
@@ -33,7 +46,11 @@ public class ProductController {
 	}
 
 	@GetMapping("/save")
-	public String saveProduct( @ModelAttribute("product") Product product,  Model model) {
+	public String saveProduct( @Valid @ModelAttribute("product") Product product,  Model model,
+			BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			return "productform";
+		}
 		pRepo.save(product);
 		return "forward:/product/list";
 	}
