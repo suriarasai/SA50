@@ -27,7 +27,8 @@ public class ProductController {
 	ProductRepository pRepo;
 	
 	@InitBinder
-	protected void InitBinder(WebDataBinder binder) {
+	protected void initBinder(WebDataBinder binder) {
+		binder.addValidators(new ProductValidator());
 		
 	}
 
@@ -46,8 +47,8 @@ public class ProductController {
 	}
 
 	@GetMapping("/save")
-	public String saveProduct( @Valid @ModelAttribute("product") Product product,  Model model,
-			BindingResult bindingResult) {
+	public String saveProduct(  @ModelAttribute("product") @Valid Product product, 
+			BindingResult bindingResult,  Model model) {
 		if (bindingResult.hasErrors()) {
 			return "productform";
 		}

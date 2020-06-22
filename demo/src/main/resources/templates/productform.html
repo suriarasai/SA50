@@ -11,15 +11,14 @@
 	<h1 th:utext="#{productform.page.title}">Product Form</h1>
 	<h2>Session Data</h2>
 	<p th:utext="${session.user.userName}"></p>
-	<form action="#" th:object="${product}" th:action="@{/product/save}" method="get">
+	<form action="#" th:object="${product}" th:action="@{/product/save}" method="get" >
 		<fieldset>
 		<input type="hidden" th:field="*{id}">  
 		</fieldset>
 		<fieldset>
 			Name: <input type="text" th:field="*{name}">
-			
+			<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
 		</fieldset>
-		<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
 		<fieldset>
 			Brand: <input type="text" th:field="*{brand}">
 		</fieldset>

@@ -17,4 +17,13 @@ public class HelloController {
         model.addAttribute("today", dateFormat.format(cal.getTime()));
         return "greetings"; 
     }
+	
+	@GetMapping("/language")
+    public String handleLanguage() {
+		     return "language"; 
+    }
+	@GetMapping("/")
+    public String home() {
+		     return "index"; 
+    }
 }

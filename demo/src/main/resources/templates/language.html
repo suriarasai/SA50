@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title th:utext="#{language.title}"></title>
+</head>
+<body>
+ <h1  th:utext="#{language.heading1}">Default H1</h1>
+ <h2  th:utext="#{language.heading2}" >Default H2</h2>
+ <p  th:utext="#{language.message(DATA1, data2)}" >Greetings</p>
+</body>
+</html>
