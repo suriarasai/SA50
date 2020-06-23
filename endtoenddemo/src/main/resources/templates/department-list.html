@@ -1,10 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Department Listing</title>
+<link rel="stylesheet" type="text/css" media="all"
+	href="../../css/style.css" th:href="@{/css/style.css}" />
+<!--  <th:block th:include="~{layout/header}"></th:block> -->
 </head>
 <body>
+<h1>Department Listing</h1>
 
+<!-- Add Hyperlink -->
+	<a href="AddDepartment.html" th:href="@{/dept/add}">Add Department</a>
+    
+	<h2 th:if="${not #lists.isEmpty(dlist)}">Department List</h2>
+	<table class="w3-container" th:if="${not #lists.isEmpty(dlist)}">
+		<tr th:each="department:${dlist}">
+			<td th:text=${department.id}>Id</td>
+			<td th:text=${department.name}>Name</td>
+			<td><a href="EditDepartment.html"
+				th:href="@{/dept/edit/}+${department.id}" >Edit</a></td>
+			<td><a href="DeleteProduct.html"
+				th:href="@{/dept/delete/}+${department.id}">Delete</a></td>
+		</tr>
+	</table>
 </body>
+<!-- <th:block th:include="layout/layout/footer"></th:block> -->
 </html>

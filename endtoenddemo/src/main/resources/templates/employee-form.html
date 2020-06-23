@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Employee Form</title>
+<link rel="stylesheet" type="text/css" media="all"
+	href="../../css/style.css" th:href="@{/css/style.css}" />
+</head>
+<body>
+	<h1>Employee Form</h1>
+	<form action="#" th:object="${employee}" th:action="@{/emp/save}"
+		method="post">
+		<fieldset>
+			<input type="hidden" th:field="*{id}">
+		</fieldset>
+		<fieldset>
+		    Employee Name
+			<input type="text" th:field="*{name}">
+			<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+		</fieldset>
+		<fieldset>
+		    Employee User ID
+			<input type="text" th:field="*{userId}">
+			<p th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}"></p>
+		</fieldset>
+		<fieldset>
+		    Employee Password
+			<input type="password" th:field="*{password}">
+			<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+		</fieldset>
+		
+		<fieldset>
+		    Department
+		    <select th:field="*{department.name}" >
+		        <option th:each="dname:${dnames}" th:value="${dname}" th:text="${dname}"></option>
+		    </select>
+		</fieldset>
+		<fieldset>
+		  <button type="submit"> Save
+		  </button>
+		  <button type="reset"> Reset </button>
+		</fieldset>
+
+	</form>
+</body>
+</html>

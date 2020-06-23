@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" media="all"
+	href="../../css/style.css" th:href="@{/css/style.css}" />
+</head>
+<body>
+<div th:fragment="header">
+<table>
+<tr>
+<td width="30%"> <img th:src="@{/images/logo.jpg}"></td>
+<td>Beautiful Header</td>
+</tr>
+</table>
+</div>
+
+<div th:fragment="footer">
+<small>(c) ISS 2020 SA50 Batch</small>
+</div>
+</body>
+</html>

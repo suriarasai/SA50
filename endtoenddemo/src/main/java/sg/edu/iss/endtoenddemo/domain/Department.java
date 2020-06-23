@@ -13,6 +13,7 @@ public class Department {
 	private int id;
 	@NotEmpty
 	private String name;
+	
 	public Department() {
 		super();
 		// TODO Auto-generated constructor stub

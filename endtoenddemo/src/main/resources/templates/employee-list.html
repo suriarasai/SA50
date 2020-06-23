@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Employee Listing</title>
+<link rel="stylesheet" type="text/css" media="all"
+	href="../../css/style.css" th:href="@{/css/style.css}" />
+</head>
+<body>
+<h1>Employee Listing</h1>
+<!-- Add Hyperlink -->
+	<a href="AddEmployee.html" th:href="@{/emp/add}">Add Employee</a>
+    
+	<h2 th:if="${not #lists.isEmpty(dlist)}">Employee List</h2>
+	<table class="w3-container" th:if="${not #lists.isEmpty(elist)}">
+		<tr th:each="employee:${elist}">
+			<td th:text=${employee.id}>Id</td>
+			<td th:text=${employee.name}>Name</td>
+			<td th:text=${employee.userId}>User Id</td>
+			<td th:text=${employee.password}>Name</td>
+			<td><a href="EditDepartment.html"
+				th:href="@{/emp/edit/}+${employee.id}" >Edit</a></td>
+			<td><a href="DeleteProduct.html"
+				th:href="@{/emp/delete/}+${employee.id}">Delete</a></td>
+		</tr>
+	</table>
+</body>
+</html>
